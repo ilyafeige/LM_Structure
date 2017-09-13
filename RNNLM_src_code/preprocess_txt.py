@@ -26,7 +26,7 @@ def load_data(filename="books_merged.txt", vocab_size=5000, max_N_sentences=1000
     
     # Read the data and append SENTENCE_START and SENTENCE_END tokens
     print("Reading %s file..." % filename)
-    data_dir = '/project/Data/'
+    data_dir = '/project/data/'
     start = time.time()
     counter = 0
     with open(data_dir+filename, 'r') as f:
