@@ -13,9 +13,11 @@ def h_iterator(model, n_steps, sentence=[]):
           " steps in %.2f minutes" % ((time.time() - start_time)/60.))
     return hs
 
-def show_h_norm(hs):
+def show_h_norm(hs, title="Norm of h"):
     norms = [np.linalg.norm(hs[n]) for n in range(len(hs))]
     plt.plot(np.arange(len(hs)), norms)    
+    plt.title(title)
+    plt.xlabel('RNN step')
     plt.show()
     
 def compute_xyarea(hs, n_start=0, n_end=None, rand_h1=None, rand_h2=None):
@@ -51,9 +53,9 @@ def show_single_2D(hs, title="h iteration", n_start=0, n_end=None,
             mask = np.arange(n_start + n, len(xs), sentence_len)
             word_number = (n_start + n) % sentence_len
             plt.scatter(xs[mask],ys[mask],s=area[mask], label="word "+str(word_number))
-        plt.legend()
+        plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
         
-    plt.title(title, fontsize=14)
+    plt.title(title)
     plt.show()    
     
 def show_multiple_2D(hs_list, title="h iteration", n_start=0, 
@@ -74,8 +76,8 @@ def show_multiple_2D(hs_list, title="h iteration", n_start=0,
                                       rand_h1=rand_h1, rand_h2=rand_h2)
         plt.scatter(xs, ys, s=area, label="sentence "+str(sent_n)) 
 
-    plt.title(title, fontsize=14)
-    plt.legend()
+    plt.title(title)
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.show()   
     
 def show_one_iteration_2D(hs_list, sentence_list,
@@ -97,8 +99,8 @@ def show_one_iteration_2D(hs_list, sentence_list,
         area[-1] = 3.*area[-1]
         plt.scatter(xs, ys, s=area, label="sentence "+str(sent_n)) 
 
-    plt.title(title, fontsize=14)
-    plt.legend()
+    plt.title(title)
+    plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
     plt.show()       
     
 def save_hs(hs, filename="hs.pkl"):    
